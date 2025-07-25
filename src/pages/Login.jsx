@@ -1,20 +1,24 @@
-import React,{useState} from 'react';
+import React, { useState } from 'react';
 import LoginDiv from '../components/Login';
 import Register from '../components/Register';
 
 const Login = () => {
-   
-    const[isLogin,setIsLogin]=useState(true);
+  const [isLogin, setIsLogin] = useState(true);
 
-    return (
-        <>
-        {isLogin && <LoginDiv/>}
-        {!isLogin && <Register/>}
-        <div>
-            <button onClick={()=>{setIsLogin(!isLogin)}}>{isLogin ? "register" : "Login"}</button>
-        </div>
-        </>
-    )
-}
+  return (
+    <>
+      <div className="auth-box">
+        <h1>Tastoria</h1>
 
-export default Login
+        {/* Render login or register based on state, and pass toggleForm prop */}
+        {isLogin ? (
+          <LoginDiv toggleForm={() => setIsLogin(false)} />
+        ) : (
+          <Register toggleForm={() => setIsLogin(true)} />
+        )}
+      </div>
+    </>
+  );
+};
+
+export default Login;
